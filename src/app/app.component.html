@@ -1,0 +1,66 @@
+
+<button (click)="tt()">Add Product</button>
+
+<!-- Form that will be shown/hidden based on the isFormVisible property -->
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" *ngIf="isFormVisible">
+  <input  id="categoryName" formControlName="categoryName" required placeholder="caption">
+  <div *ngIf="productForm.get('categoryName')?.invalid ">
+    <small class="error" style="background-color: red;">Category is required.</small>
+</div>
+
+  <div>
+      <input  id="categoryId" type="number" formControlName="categoryId" required placeholder="categoryId">
+      <div *ngIf="productForm.get('categoryId')?.invalid ">
+          <small class="error" style="background-color: red;">Category ID is required.</small>
+      </div>
+  </div>
+
+  <div>
+      <input id="price" type="number" formControlName="price" placeholder="Price">
+  </div>
+
+  <div>
+      <input id="name" formControlName="name" placeholder="Name">
+  </div>
+
+  <div>
+      <input id="img" formControlName="img" placeholder="img">
+  </div>
+
+  <div>
+      <textarea id="description" formControlName="description" placeholder="Description"></textarea>
+  </div>
+
+  <button type="submit" [disabled]="productForm.invalid">Save</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table>
+    <tr *ngFor="let i of t">
+      <button (click)="update(i)">update</button>
+      <button (click)="deletep(i.productId)">delete</button>
+
+      <td>{{ i.name }}</td>
+      <td>{{ i.description }}</td>
+
+      <td>{{ i.img }}</td>
+      <td>{{ i.price }}</td>
+
+    </tr>
+</table>
+<router-outlet />
